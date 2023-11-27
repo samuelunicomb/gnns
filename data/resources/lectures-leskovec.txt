@@ -1,0 +1,62 @@
+CS224W: Machine Learning with Graphs | 2021
+
+Lecture 1.1      Why Graphs
+Lecture 1.2      Applications of Graph ML
+Lecture 1.3      Choice of Graph Representation
+Lecture 2.1      Traditional Feature-based Methods: Node
+Lecture 2.2      Traditional Feature-based Methods: Link
+Lecture 2.3      Traditional Feature-based Methods: Graph
+Lecture 3.1      Node Embeddings
+Lecture 3.2      Random Walk Approaches for Node Embeddings
+Lecture 3.3      Embedding Entire Graphs
+Lecture 4.1      PageRank
+Lecture 4.2      PageRank: How to Solve?
+Lecture 4.3      Random Walk with Restarts
+Lecture 4.4      Matrix Factorization and Node Embeddings
+Lecture 5.1      Message passing and Node Classification
+Lecture 5.2      Relational and Iterative Classification
+Lecture 5.3      Collective Classification
+Lecture 6.1      Introduction to Graph Neural Networks
+Lecture 6.2      Basics of Deep Learning
+Lecture 6.3      Deep Learning for Graphs
+Lecture 7.1      A general Perspective on GNNs
+Lecture 7.2      A Single Layer of a GNN
+Lecture 7.3      Stacking layers of a GNN
+Lecture 8.1      Graph Augmentation for GNNs
+Lecture 8.2      Training Graph Neural Networks
+Lecture 8.3      Setting up GNN Prediction Tasks
+Lecture 9.1      How Expressive are Graph Neural Networks
+Lecture 9.2      Designing the Most Powerful GNNs
+Lecture 10.1     Heterogeneous & Knowledge Graph Embedding
+Lecture 10.2     Knowledge Graph Completion
+Lecture 10.3     Knowledge Graph Completion Algorithms
+Lecture 11.1     Reasoning in Knowledge Graphs
+Lecture 11.2     Answering Predictive Queries
+Lecture 11.3     Query2box: Reasoning over KGs
+Lecture 12.1     Fast Neural Subgraph Matching & Counting
+Lecture 12.2     Neural Subgraph Matching
+Lecture 12.3     Finding Frequent Subgraphs
+Lecture 13.1     Community Detection in Networks
+Lecture 13.2     Network Communities
+Lecture 13.3     Louvain Algorithm
+Lecture 13.4     Detecting Overlapping Communities
+Lecture 14.1     Generative Models for Graphs
+Lecture 14.2     Erdos Renyi Random Graphs
+Lecture 14.3     The Small World Model
+Lecture 14.4     Kronecker Graph Model
+Lecture 15.1     Deep Generative Models for Graphs
+Lecture 15.2     Graph RNN: Generating Realistic Graphs
+Lecture 15.3     Scaling Up & Evaluating Graph Gen
+Lecture 15.4     Applications of Deep Graph Generation
+Lecture 16.1     Limitations of Graph Neural Networks
+Lecture 16.2     Position-Aware Graph Neural Networks
+Lecture 16.3     Identity-Aware Graph Neural Networks
+Lecture 16.4     Robustness of Graph Neural Networks
+Lecture 17.1     Scaling up Graph Neural Networks
+Lecture 17.2     GraphSAGE Neighbor Sampling
+Lecture 17.3     Cluster GCN: Scaling up GNNs
+Lecture 17.4     Scaling up by Simplifying GNNs
+Lecture 18       GNNs in Computational Biology
+Lecture 19.1     Pre-Training Graph Neural Networks
+Lecture 19.2     Hyperbolic Graph Embeddings
+Lecture 19.3     Design Space of Graph Neural Networks
