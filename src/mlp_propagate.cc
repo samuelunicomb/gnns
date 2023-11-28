@@ -5,6 +5,7 @@
 // forward pass of MLP
 void mlp::forwardprop(const vector<double> &x)
 {
+  // input layer
   a[0] = 1;
   z[0] = a[0];
   for(int i = 0; i < x.size(); ++i){
@@ -12,6 +13,7 @@ void mlp::forwardprop(const vector<double> &x)
     z[i + 1] = a[i + 1];
   }
 
+  // hidden layer
   for(int l = 1; l < layers.size() - 1; ++l){
     for(int j : layers[l]){
       if(!bias[j]){
@@ -28,18 +30,18 @@ void mlp::forwardprop(const vector<double> &x)
   // output layer
   for(int k : layers[2]){
     a[k] = 0;
-    for(int j : layers[1])
-      a[k] += weights[pair<int, int>{k, j}] * a[j];
+    for(int j : layers[1]){
+      a[k] += weights[pair<int, int>{k, j}] * z[j];
+    }
     z[k] = a[k];
     y[0] = a[k];
   }
 }
 
-// forward pass of MLP
+// backward pass to compute gradient
 void mlp::backprop(const vector<double> &t)
 {
   // delta, output layer
-  // TODO poor indexing, will generalise badly
   for(int k : layers[2]){
     delta[k] = y[0] - t[0];
   }
@@ -67,24 +69,6 @@ void mlp::backprop(const vector<double> &t)
   for(auto it : weights){
     int j = it.first.first;
     int i = it.first.second;
-    partiale[it.first] =  delta[j] * z[i];
+    gradient[it.first] =  delta[j] * z[i];
   }
-
-  //cout << "data" << endl;
-  //for(int i = 0; i < delta.size(); ++i){
-  //  cout << i << " ";
-  //  cout << delta[i] << " ";
-  //  cout << a[i] << " ";
-  //  cout << z[i] << " ";
-  //  cout << endl;
-  //}
-
-  //cout << "weights" << endl;
-  //for(auto it : weights){
-  //  cout << it.first.first << " ";
-  //  cout << it.first.second << " ";
-  //  cout << weights[it.first] << " ";
-  //  cout << partiale[it.first] << " ";
-  //  cout << endl;
-  //}
 }

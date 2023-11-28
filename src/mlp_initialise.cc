@@ -49,7 +49,7 @@ void mlp::initialise()
   assert(n == index);
 
   gen = mt19937(random_device{}());
-  unif = uniform_real_distribution<double>(0, 1);
+  unif = uniform_real_distribution<double>(-1, 1);
 
   // construct and initialise weights
   for(int l = 1; l < layers.size(); ++l){
@@ -63,8 +63,8 @@ void mlp::initialise()
   }
 
   // construct error gradient
-  partiale = map<pair<int, int>, double>{};
+  gradient = map<pair<int, int>, double>{};
 
   for(auto it : weights)
-    partiale[it.first] = 0;  
+    gradient[it.first] = 0;  
 }

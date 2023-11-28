@@ -14,6 +14,8 @@ class mlp
   public:
     mlp(){};
 
+    int tcount;
+
     int n, dimin, dimout, numhidden;
 
     vector<double> a, z, delta;
@@ -23,7 +25,7 @@ class mlp
 
     vector<double> x, y;
 
-    map<pair<int, int>, double> weights, partiale;
+    map<pair<int, int>, double> weights, gradient;
     vector<set<int>> layers;
 
     void initialise();
@@ -33,8 +35,10 @@ class mlp
 
     void print_forward();
     void print_weights();
+    void print_data();
 
     mt19937 gen;
     uniform_real_distribution<double> unif;
+    uniform_int_distribution<int> unifint;
 };
 #endif
