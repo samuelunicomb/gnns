@@ -36,6 +36,7 @@ class gcn
     void initialise();
     void aggregate(const mat2d&, mat2d&);
     void nonlinearity(mat2d&);
+    void softmax(mat2d&);
     void train();
     void backpropagate();
 
