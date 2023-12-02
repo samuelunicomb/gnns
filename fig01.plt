@@ -1,4 +1,5 @@
 set key top center
+unset key
 
 set size ratio 1
 
@@ -12,7 +13,7 @@ set bmargin 5
 set lmargin 12
 set rmargin 5
 
-c = 1.8
+c = 2
 
 p 'out/out01/out-0.dat' w p pt 7 ps c title 'class 0',\
   'out/out01/out-1.dat' w p pt 7 ps c title 'class 1',\
