@@ -2,5 +2,7 @@ build
 
 test
 
+.DS_Store
+
 **.dat
 **.swp

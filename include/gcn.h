@@ -21,7 +21,7 @@ class gcn
 
     vector<vector<double>> W0, W1, W2;
     vector<vector<double>> X;
-    vector<vector<double>> A, Atilde, Ahat;
+    vector<vector<double>> M;
 
     void print_utility();
 
