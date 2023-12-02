@@ -7,7 +7,8 @@
 // read two column edgelist from file
 void gcn::readgraph()
 {
-  string filename = "/Users/samuelunicomb/gnns/data/zachary/edges.dat";
+  //string filename = "/Users/samuelunicomb/gnns/data/zachary/edges.dat";
+  string filename = "/Users/samuelunicomb/gnns/data/dummy/edges.dat";
 
   nlist = vector<set<int>>(100000);
 
@@ -37,7 +38,8 @@ void gcn::readgraph()
 // read node class labels from file
 void gcn::readclasses()
 {
-  string filename = "/Users/samuelunicomb/gnns/data/zachary/classes1.dat";
+  //string filename = "/Users/samuelunicomb/gnns/data/zachary/classes1.dat";
+  string filename = "/Users/samuelunicomb/gnns/data/dummy/classes0.dat";
 
   nodeclass = vector<int>(N);
 

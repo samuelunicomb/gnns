@@ -24,7 +24,7 @@ void mlp::train()
   double beta2 = 0.999;
   double epsilon = 1e-8;
 
-  int nweights = weights.size();
+  //int nweights = weights.size();
 
   map<pair<int, int>, double> m, mhat, v, vhat, g;
 

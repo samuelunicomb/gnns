@@ -50,36 +50,39 @@ void gcn::train()
 {
   initialise();
 
-  mat2d H0, H1, H2, H3, M0, M1, M2, M3;
-
-  H0 = mat2d(N, vector<double>(N, 0));
-  H1 = mat2d(4, vector<double>(N, 0));
-  H2 = mat2d(4, vector<double>(N, 0));
-  H3 = mat2d(2, vector<double>(N, 0));
-
-  M0 = mat2d(N, vector<double>(N, 0));
-  M1 = mat2d(4, vector<double>(N, 0));
-  M2 = mat2d(4, vector<double>(N, 0));
-  M3 = mat2d(2, vector<double>(N, 0));
-
   for(int i = 0; i < H0.size(); ++i) H0[i][i] = 1;
 
   aggregate(H0, M0);
+
+  cout << "initial" << endl;
+  cout << "=====================================" << endl;
+  print_matrix(H0);
+  cout << endl;
+  print_matrix(W0);
+  cout << endl;
+  print_matrix(M0);
+  cout << endl;
+
   matmul(W0, H0, H1);
   nonlinearity(H1);
 
-  aggregate(H1, M1);
-  matmul(W1, H1, H2);
-  nonlinearity(H2);
+  cout << "final" << endl;
+  cout << "=====================================" << endl;
+  print_matrix(H1);
+  cout << endl;
 
-  aggregate(H2, M2);
-  matmul(W2, H2, H3);
-  nonlinearity(H3);
+  //aggregate(H1, M1);
+  //matmul(W1, H1, H2);
+  //nonlinearity(H2);
 
-  for(int j = 0; j < N; ++j){
-    cout << H3[0][j] << " ";
-    cout << H3[1][j] << " ";
-    cout << "type" << nodeclass[j] << " ";
-    cout << endl;
-  }
+  //aggregate(H2, M2);
+  //matmul(W2, H2, H3);
+  //nonlinearity(H3);
+
+  //for(int j = 0; j < N; ++j){
+  //  cout << H3[0][j] << " ";
+  //  cout << H3[1][j] << " ";
+  //  cout << "type" << nodeclass[j] << " ";
+  //  cout << endl;
+  //}
 }

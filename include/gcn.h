@@ -26,9 +26,8 @@ class gcn
     void readclasses();
 
     vector<int> k;  // node degrees
-    vector<vector<double>> W0, W1, W2;
-    vector<vector<double>> X;
-    vector<vector<double>> M;
+    mat2d W0, W1, W2;
+    mat2d H0, H1, H2, H3, M0, M1, M2;
 
     void initialise();
     void aggregate(const mat2d&, mat2d&);
@@ -37,6 +36,7 @@ class gcn
 
     void print_utility();
     void print_graph();
+    void print_matrix(const mat2d&);
 
     mt19937 gen;
     uniform_real_distribution<double> unif;
