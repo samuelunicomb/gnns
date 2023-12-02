@@ -8,7 +8,6 @@
 void gcn::readgraph()
 {
   string filename = "/Users/samuelunicomb/gnns/data/zachary/edges.dat";
-  //string filename = "/Users/samuelunicomb/gnns/data/dummy/edges.dat";
 
   nlist = vector<set<int>>(100000);
 
@@ -39,12 +38,13 @@ void gcn::readgraph()
 void gcn::readclasses()
 {
   string filename = "/Users/samuelunicomb/gnns/data/zachary/classes1.dat";
-  //string filename = "/Users/samuelunicomb/gnns/data/dummy/classes0.dat";
 
   nodeclass = vector<int>(N);
 
   ifstream myfile(filename);
   string line;
+  
+  classmap = map<int, set<int>>{};
 
   while(getline(myfile, line)){
     istringstream iss(line);
@@ -53,5 +53,6 @@ void gcn::readclasses()
     if(!(iss >> i >> c)) break;
 
     nodeclass[i] = c;
+    classmap[c].insert(i);
   }
 }

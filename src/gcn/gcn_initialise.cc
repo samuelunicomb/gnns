@@ -12,6 +12,12 @@ void gcn::initialise()
 
   readgraph();
 
+  Y = map<int, vector<int>>{};
+  Y[7]  = vector<int>{1, 0, 0, 0};
+  Y[16] = vector<int>{0, 1, 0, 0};
+  Y[24] = vector<int>{0, 0, 1, 0};
+  Y[29] = vector<int>{0, 0, 0, 1};
+
   H0 = mat2d(N, vector<double>(N, 0));
   H1 = mat2d(4, vector<double>(N, 0));
   H2 = mat2d(4, vector<double>(N, 0));

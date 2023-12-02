@@ -45,6 +45,11 @@ void gcn::nonlinearity(mat2d &H)
       H[i][j] = tanh(H[i][j]);
 }
 
+void gcn::backpropagate()
+{
+
+}
+
 void gcn::train()
 {
   initialise();
