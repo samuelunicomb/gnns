@@ -7,10 +7,9 @@ using namespace std;
 
 int main ()
 {
-  //gcn G;
-  //G.readgraph();
-  //G.print_utility();
+  gcn G;
+  G.train();
 
-  mlp M;
-  M.train();
+  //mlp M;
+  //M.train();
 }
