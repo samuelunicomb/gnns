@@ -8,9 +8,8 @@ static void matmul(const mat2d &A, const mat2d &B, mat2d &C)
   for(int i = 0; i < C.size(); ++i){
     for(int j = 0; j < C[i].size(); ++j){
       C[i][j] = 0;
-      for(int k = 0; k < A[i].size(); ++k){
+      for(int k = 0; k < A[i].size(); ++k)
         C[i][j] += A[i][k] * B[k][j];
-      }
     }
   }
 }
@@ -51,25 +50,6 @@ void gcn::train()
   initialise();
 
   for(int i = 0; i < H0.size(); ++i) H0[i][i] = 1;
-
-  //aggregate(H0, M0);
-
-  //cout << "initial" << endl;
-  //cout << "=====================================" << endl;
-  //print_matrix(H0);
-  //cout << endl;
-  //print_matrix(W0);
-  //cout << endl;
-  //print_matrix(M0);
-  //cout << endl;
-
-  //matmul(W0, H0, H1);
-  ////nonlinearity(H1);
-
-  //cout << "final" << endl;
-  //cout << "=====================================" << endl;
-  //print_matrix(H1);
-  //cout << endl;
 
   aggregate(H0, M0);
   matmul(W0, M0, H1);
