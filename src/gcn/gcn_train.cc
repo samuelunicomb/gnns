@@ -220,19 +220,18 @@ void gcn::forward()
 
 void gcn::numgradient(const int &i, const int &j, double &E)
 {
-  double eps = 1e-2;
-  double w = W2[i][j];
+  double eps = 1e-3;
+  double w = W0[i][j];
 
-  W2[i][j] = w + eps;
+  W0[i][j] = w + eps;
   forward();
   double Ep = L;
 
-  W2[i][j] = w - eps;
+  W0[i][j] = w - eps;
   forward();
   double Em = L;
 
   E = (Ep - Em) / (2 * eps);
-  //cout << (Ep - Em) / (2 * eps) << endl;
 }
 
 void gcn::train()
@@ -244,16 +243,59 @@ void gcn::train()
   forward();
   gradient();
 
-  print_matrix(dW2);
-  cout << endl;
-  numgradient(0, 0, E); printf("%*.6f ",  9, E);
-  numgradient(0, 1, E); printf("%*.6f ",  9, E);
-  numgradient(0, 2, E); printf("%*.6f ",  9, E);
-  numgradient(0, 3, E); printf("%*.6f\n", 9, E);
-  numgradient(1, 0, E); printf("%*.6f ",  9, E);
-  numgradient(1, 1, E); printf("%*.6f ",  9, E);
-  numgradient(1, 2, E); printf("%*.6f ",  9, E);
-  numgradient(1, 3, E); printf("%*.6f\n", 9, E);
+  //print_matrix(dW0);
+  //cout << endl;
+  //numgradient(0, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 1, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 2, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 3, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 4, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 5, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 6, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 7, E); printf("%*.6f\n", 9, E);
+  //numgradient(1, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 1, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 2, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 3, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 4, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 5, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 6, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 7, E); printf("%*.6f\n", 9, E);
+  //numgradient(2, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(2, 1, E); printf("%*.6f ",  9, E);
+  //numgradient(2, 2, E); printf("%*.6f ",  9, E);
+  //numgradient(2, 3, E); printf("%*.6f ",  9, E);
+  //numgradient(2, 4, E); printf("%*.6f ",  9, E);
+  //numgradient(2, 5, E); printf("%*.6f ",  9, E);
+  //numgradient(2, 6, E); printf("%*.6f ",  9, E);
+  //numgradient(2, 7, E); printf("%*.6f\n", 9, E);
+  //numgradient(3, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(3, 1, E); printf("%*.6f ",  9, E);
+  //numgradient(3, 2, E); printf("%*.6f ",  9, E);
+  //numgradient(3, 3, E); printf("%*.6f ",  9, E);
+  //numgradient(3, 4, E); printf("%*.6f ",  9, E);
+  //numgradient(3, 5, E); printf("%*.6f ",  9, E);
+  //numgradient(3, 6, E); printf("%*.6f ",  9, E);
+  //numgradient(3, 7, E); printf("%*.6f\n", 9, E);
+
+  //print_matrix(dW1);
+  //cout << endl;
+  //numgradient(0, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 1, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 2, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 3, E); printf("%*.6f\n", 9, E);
+  //numgradient(1, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 1, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 2, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 3, E); printf("%*.6f\n", 9, E);
+  //numgradient(2, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(2, 1, E); printf("%*.6f ",  9, E);
+  //numgradient(2, 2, E); printf("%*.6f ",  9, E);
+  //numgradient(2, 3, E); printf("%*.6f\n", 9, E);
+  //numgradient(3, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(3, 1, E); printf("%*.6f ",  9, E);
+  //numgradient(3, 2, E); printf("%*.6f ",  9, E);
+  //numgradient(3, 3, E); printf("%*.6f\n", 9, E);
 
   //print_matrix(dW2);
   //cout << endl;

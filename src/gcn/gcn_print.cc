@@ -3,15 +3,26 @@
 // print an arbitrary 2d matrix A
 void gcn::print_matrix(const mat2d &A)
 {
-  for(int j = 0; j < A[0].size(); ++j)
+  int maxcols = 8;
+  for(int j = 0; j < maxcols; ++j)
     printf("%*d ", 9, j);
   printf("\n");
 
   for(int i = 0; i < A.size(); ++i){
-    for(int j = 0; j < A[i].size(); ++j)
+    for(int j = 0; j < maxcols; ++j)
       printf("%*.6f ", 9, A[i][j]);
     printf("\n");
   }
+
+  //for(int j = 0; j < A[0].size(); ++j)
+  //  printf("%*d ", 9, j);
+  //printf("\n");
+
+  //for(int i = 0; i < A.size(); ++i){
+  //  for(int j = 0; j < A[i].size(); ++j)
+  //    printf("%*.6f ", 9, A[i][j]);
+  //  printf("\n");
+  //}
 }
 
 // print transpose of an arbitrary 2d matrix A
