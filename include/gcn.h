@@ -35,7 +35,9 @@ class gcn
     mat2d I;
     double L;
 
+    void forward();
     void initialise();
+    void reset();
     void aggregate(const mat2d&, mat2d&);
     void equate(const mat2d&, mat2d&);
     void nonlinearity(const mat2d&, mat2d&);
@@ -43,6 +45,7 @@ class gcn
     void crossentropy();
     void train();
     void gradient();
+    void numgradient(const int&, const int&, double&);
 
     void print_graph();
     void print_matrix(const mat2d&);

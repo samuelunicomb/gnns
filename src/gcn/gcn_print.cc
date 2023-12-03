@@ -4,12 +4,12 @@
 void gcn::print_matrix(const mat2d &A)
 {
   for(int j = 0; j < A[0].size(); ++j)
-    printf("%*d ", 8, j);
+    printf("%*d ", 9, j);
   printf("\n");
 
   for(int i = 0; i < A.size(); ++i){
     for(int j = 0; j < A[i].size(); ++j)
-      printf("%*.6f ", 8, A[i][j]);
+      printf("%*.6f ", 9, A[i][j]);
     printf("\n");
   }
 }

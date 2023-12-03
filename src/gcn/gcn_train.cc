@@ -69,11 +69,13 @@ void gcn::crossentropy()
   L = 0;
   for(auto it : Y){
     int j = it.first;
-    for(int i = 0; i < H4.size(); ++i)
+    for(int i = 0; i < H4.size(); ++i){
       L -= Y[j][i] * log(H4[i][j]);
+    }
   }
 }
 
+// computes gradient via backpropagation
 void gcn::gradient()
 {
   // l = 4
@@ -91,7 +93,6 @@ void gcn::gradient()
         del3[i][j] += W3[k][i] * del4[k][j];
       }
       del3[i][j] *= 1 - tanh(H3t[i][j]) * tanh(H3t[i][j]);
-      del3[i][j] /= k[j] + 1;
     }
   }
 
@@ -125,22 +126,24 @@ void gcn::gradient()
   // l = 1
   for(int j = 0; j < del1[0].size(); ++j){ // column j
     for(int i = 0; i < del1.size(); ++i){ // row i
+
       // ego sum
       double suma = 0;
       for(int k = 0; k < 4; ++k){
-        suma += W2[k][i] * del3[k][j];
+        suma += W1[k][i] * del2[k][j];
       }
-      suma *= 1 - tanh(H2t[i][j]) * tanh(H2t[i][j]);
+      suma *= 1 - tanh(H1t[i][j]) * tanh(H2t[i][j]);
       suma /= k[j] + 1;
+
 
       // neighbour sum
       double sumb = 0;
       for(int l : nlist[j]){
         double sumc = 0;
         for(int k = 0; k < 4; ++k){
-          sumc += W2[k][i] * del3[k][l];
+          sumc += W1[k][i] * del2[k][l];
         }
-        sumc *= 1 - tanh(H2t[i][j]) * tanh(H2t[i][j]);
+        sumc *= 1 - tanh(H1t[i][j]) * tanh(H1t[i][j]);
         sumc /= sqrt((k[j] + 1) * (k[l] + 1));
 
         sumb += sumc;
@@ -148,13 +151,47 @@ void gcn::gradient()
       del1[i][j] = suma + sumb;
     }
   }
+
+  for(int i = 0; i < 4; ++i){
+    for(int j = 0; j < 2; ++j){
+      dW3[i][j] = 0;
+      for(int k = 0; k < N; ++k){
+        dW3[i][j] += del4[i][k] * M3[j][k];
+      }
+    }
+  }
+
+  for(int i = 0; i < 2; ++i){
+    for(int j = 0; j < 4; ++j){
+      dW2[i][j] = 0;
+      for(int k = 0; k < N; ++k){
+        dW2[i][j] += del3[i][k] * M2[j][k];
+      }
+    }
+  }
+
+  for(int i = 0; i < 4; ++i){
+    for(int j = 0; j < 4; ++j){
+      dW1[i][j] = 0;
+      for(int k = 0; k < N; ++k){
+        dW1[i][j] += del2[i][k] * M1[j][k];
+      }
+    }
+  }
+
+  for(int i = 0; i < 4; ++i){
+    for(int j = 0; j < N; ++j){
+      dW0[i][j] = 0;
+      for(int k = 0; k < N; ++k){
+        dW0[i][j] += del1[i][k] * M0[j][k];
+      }
+    }
+  }
 }
 
-void gcn::train()
+void gcn::forward()
 {
-  initialise();
-
-  H0 = I;
+  reset();
 
   // l = 0
   aggregate(H0, M0);
@@ -179,8 +216,66 @@ void gcn::train()
   softmax(H4t, H4);
 
   crossentropy();
+}
 
+void gcn::numgradient(const int &i, const int &j, double &E)
+{
+  double eps = 1e-2;
+  double w = W2[i][j];
+
+  W2[i][j] = w + eps;
+  forward();
+  double Ep = L;
+
+  W2[i][j] = w - eps;
+  forward();
+  double Em = L;
+
+  E = (Ep - Em) / (2 * eps);
+  //cout << (Ep - Em) / (2 * eps) << endl;
+}
+
+void gcn::train()
+{
+  initialise();
+
+  double E;
+
+  forward();
   gradient();
+
+  print_matrix(dW2);
+  cout << endl;
+  numgradient(0, 0, E); printf("%*.6f ",  9, E);
+  numgradient(0, 1, E); printf("%*.6f ",  9, E);
+  numgradient(0, 2, E); printf("%*.6f ",  9, E);
+  numgradient(0, 3, E); printf("%*.6f\n", 9, E);
+  numgradient(1, 0, E); printf("%*.6f ",  9, E);
+  numgradient(1, 1, E); printf("%*.6f ",  9, E);
+  numgradient(1, 2, E); printf("%*.6f ",  9, E);
+  numgradient(1, 3, E); printf("%*.6f\n", 9, E);
+
+  //print_matrix(dW2);
+  //cout << endl;
+  //numgradient(0, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 1, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 2, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 3, E); printf("%*.6f\n", 9, E);
+  //numgradient(1, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 1, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 2, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 3, E); printf("%*.6f\n", 9, E);
+
+  //print_matrix(dW3);
+  //cout << endl;
+  //numgradient(0, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(0, 1, E); printf("%*.6f\n", 9, E);
+  //numgradient(1, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(1, 1, E); printf("%*.6f\n", 9, E);
+  //numgradient(2, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(2, 1, E); printf("%*.6f\n", 9, E);
+  //numgradient(3, 0, E); printf("%*.6f ",  9, E);
+  //numgradient(3, 1, E); printf("%*.6f\n", 9, E);
 
   //print_embedding(H3);
 }

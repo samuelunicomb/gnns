@@ -32,6 +32,8 @@ void gcn::initialise()
   I = mat2d(N, vector<double>(N, 0));
   for(int i = 0; i < N; ++i) I[i][i] = 1;
 
+  H0 = I;
+
   for(int i = 0; i < W0.size(); ++i)
     for(int j = 0; j < W0[i].size(); ++j)
       W0[i][j] = (2 * unif(gen) - 1) * sqrt(6.0 / (N + 4));
@@ -47,4 +49,20 @@ void gcn::initialise()
   for(int i = 0; i < W3.size(); ++i)
     for(int j = 0; j < W3[i].size(); ++j)
       W3[i][j] = (2 * unif(gen) - 1) * sqrt(6.0 / (2 + 4));
+}
+
+void gcn::reset()
+{
+  H0 = mat2d(N, vector<double>(N, 0)); H0t = H0;            M0 = H0;
+  H1 = mat2d(4, vector<double>(N, 0)); H1t = H1; del1 = H1; M1 = H1;
+  H2 = mat2d(4, vector<double>(N, 0)); H2t = H2; del2 = H2; M2 = H2;
+  H3 = mat2d(2, vector<double>(N, 0)); H3t = H3; del3 = H3; M3 = H3;
+  H4 = mat2d(4, vector<double>(N, 0)); H4t = H4; del4 = H4;
+
+  dW0 = mat2d(4, vector<double>(N, 0));
+  dW1 = mat2d(4, vector<double>(4, 0));
+  dW2 = mat2d(2, vector<double>(4, 0));
+  dW3 = mat2d(4, vector<double>(2, 0));
+
+  H0 = I;
 }
