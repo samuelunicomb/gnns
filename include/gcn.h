@@ -30,13 +30,16 @@ class gcn
     vector<int> k;
     mat2d W0, W1, W2, W3;
     mat2d dW0, dW1, dW2, dW3;
-    mat2d H0, H1, H2, H3, H4, M0, M1, M2;
+    mat2d H0, H1, H2, H3, H4, M0, M1, M2, M3, H0t, H1t, H2t, H3t, H4t;
+    mat2d del1, del2, del3, del4;
+    mat2d I;
     double L;
 
     void initialise();
     void aggregate(const mat2d&, mat2d&);
-    void nonlinearity(mat2d&);
-    void softmax(mat2d&);
+    void equate(const mat2d&, mat2d&);
+    void nonlinearity(const mat2d&, mat2d&);
+    void softmax(const mat2d&, mat2d&);
     void crossentropy();
     void train();
     void gradient();
