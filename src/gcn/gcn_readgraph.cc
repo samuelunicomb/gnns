@@ -44,8 +44,6 @@ void gcn::readclasses()
   ifstream myfile(filename);
   string line;
   
-  classmap = map<int, set<int>>{};
-
   while(getline(myfile, line)){
     istringstream iss(line);
 
@@ -53,6 +51,5 @@ void gcn::readclasses()
     if(!(iss >> i >> c)) break;
 
     nodeclass[i] = c;
-    classmap[c].insert(i);
   }
 }

@@ -1,6 +1,6 @@
 #include "gcn.h"
 
-#include <cmath>
+//#include <cmath>  // tanh
 
 // compute C = AB, for matrices A, B, C
 static void matmul(const mat2d &A, const mat2d &B, mat2d &C)
@@ -37,15 +37,39 @@ void gcn::aggregate(const mat2d &H, mat2d &M)
   }
 }
 
-// compute the element-wise nonlinearities
+// element-wise computation of nonlinearities
 void gcn::nonlinearity(mat2d &H)
 {
-  for(int i = 0; i < H.size(); ++i)
-    for(int j = 0; j < H[i].size(); ++j)
-      H[i][j] = tanh(H[i][j]);
+  //for(int i = 0; i < H.size(); ++i)
+  //  for(int j = 0; j < H[i].size(); ++j)
+  //    H[i][j] = tanh(H[i][j]);
 }
 
-void gcn::backpropagate()
+// column-wise application of softmax
+void gcn::softmax(mat2d &H)
+{
+  for(int j = 0; j < H[0].size(); ++j){
+    double norm = 0;
+    for(int i = 0; i < H.size(); ++i)
+      norm += exp(H[i][j]);
+
+    for(int i = 0; i < H.size(); ++i)
+      H[i][j] = exp(H[i][j]) / norm;
+  }
+}
+
+// cross-entropy loss of softmax output layer
+void gcn::crossentropy()
+{
+  L = 0;
+  for(auto it : Y){
+    int j = it.first;
+    for(int i = 0; i < H4.size(); ++i)
+      L -= Y[j][i] * log(H4[i][j]);
+  }
+}
+
+void gcn::gradient()
 {
 
 }
@@ -68,10 +92,12 @@ void gcn::train()
   matmul(W2, M2, H3);
   nonlinearity(H3);
 
-  for(int j = 0; j < N; ++j){
-    cout << H3[0][j] << " ";
-    cout << H3[1][j] << " ";
-    cout << "type" << nodeclass[j] << " ";
-    cout << endl;
-  }
+  matmul(W3, H3, H4);
+  softmax(H4);
+
+  crossentropy();
+
+  //cout << L << endl;
+
+  print_embedding(H3);
 }

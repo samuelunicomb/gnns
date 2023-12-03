@@ -20,29 +20,31 @@ class gcn
     int N;
     vector<set<int>> nlist;
     vector<int> nodeclass;
-    map<int, int> partial{{0, 0}, {16, 1}, {32, 2}, {33, 3}};
 
-    set<int> Ylabs{0, 16, 32, 33};
     map<int, vector<int>> Y;
-    map<int, set<int>> clssmap;
+    map<int, set<int>> classmap;
 
     void readgraph();
     void readclasses();
 
     vector<int> k;
     mat2d W0, W1, W2, W3;
+    mat2d dW0, dW1, dW2, dW3;
     mat2d H0, H1, H2, H3, H4, M0, M1, M2;
+    double L;
 
     void initialise();
     void aggregate(const mat2d&, mat2d&);
     void nonlinearity(mat2d&);
     void softmax(mat2d&);
+    void crossentropy();
     void train();
-    void backpropagate();
+    void gradient();
 
-    void print_utility();
     void print_graph();
     void print_matrix(const mat2d&);
+    void print_matrixt(const mat2d&);
+    void print_embedding(const mat2d&);
 
     mt19937 gen;
     uniform_real_distribution<double> unif;
