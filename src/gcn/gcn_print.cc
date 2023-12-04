@@ -72,17 +72,17 @@ void gcn::print_fig03a()
 {
   for(int i = 0; i < dW0.size(); ++i)
     for(int j = 0; j < dW0[i].size(); ++j)
-      printf("%f %f\n", dW0[i][j], dW0num[i][j]);
+      printf("%f %f %.12f\n", dW0[i][j], dW0num[i][j], abs((dW0[i][j] - dW0num[i][j]) / dW0[i][j]));
 
   for(int i = 0; i < dW1.size(); ++i)
     for(int j = 0; j < dW1[i].size(); ++j)
-      printf("%f %f\n", dW1[i][j], dW1num[i][j]);
+      printf("%f %f %.12f\n", dW1[i][j], dW1num[i][j], abs((dW1[i][j] - dW1num[i][j]) / dW1[i][j]));
 
   for(int i = 0; i < dW2.size(); ++i)
     for(int j = 0; j < dW2[i].size(); ++j)
-      printf("%f %f\n", dW2[i][j], dW2num[i][j]);
+      printf("%f %f %.12f\n", dW2[i][j], dW2num[i][j], abs((dW2[i][j] - dW2num[i][j]) / dW2[i][j]));
 
   for(int i = 0; i < dW3.size(); ++i)
     for(int j = 0; j < dW3[i].size(); ++j)
-      printf("%f %f\n", dW3[i][j], dW3num[i][j]);
+      printf("%f %f %.12f\n", dW3[i][j], dW3num[i][j], abs((dW3[i][j] - dW3num[i][j]) / dW3[i][j]));
 }

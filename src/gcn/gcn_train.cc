@@ -49,6 +49,8 @@ void gcn::experiment03()
 {
   initialise();
 
+  epsilon = 1e-3;
+
   forward();
   gradient();
   gradienteps();

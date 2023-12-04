@@ -165,6 +165,14 @@ where
   \begin{equation}
     \dfrac{\partial \mathcal{L}^{(\text{d})}}{\partial w_{ji}} = \dfrac{\mathcal{L}(w_{ji} + \epsilon) - \mathcal{L}(w_{ji} - \epsilon)}{2\epsilon} + \mathcal{O}(\epsilon^2).
   \end{equation}
+  Both forward and backward passes involve $\mathcal{O}(|\mathcal{E}|)$ operations.
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \includegraphics[scale=0.32]{figs/fig03a.pdf}
+    \caption{Sorted relative error in the gradients $\bigl| \nabla \mathcal{L}_i^{(b)} - \nabla \mathcal{L}_i^{(n)} \bigr| / \bigl| \nabla \mathcal{L}_i^{(b)}\bigr|$}
+  \end{figure}
 \end{frame}
 
 \end{document}

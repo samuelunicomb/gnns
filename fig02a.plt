@@ -26,10 +26,10 @@ set linetype 3 lc rgb "#ff743e"
 set linetype 4 lc rgb "#68ad36"
 
 dt = 10
-do for[i=dt:4000:dt]{
-#do for[i=dt:100000:dt]{
-  #j = i % 4000 + 10
-  j = i
+#do for[i=dt:4000:dt]{
+do for[i=dt:100000:dt]{
+  j = i % 4000 + 10
+  #j = i
 
   set title sprintf("iteration %d", j / 10)
   p 'out/out02/out-e-'.j.'-0.dat' u 1:2 w p pt 7 ps c lt 1 notitle,\

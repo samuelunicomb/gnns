@@ -185,25 +185,21 @@ void gcn::gradienterr(double &e)
 
   for(int i = 0; i < 4; ++i)
     for(int j = 0; j < N; ++j){
-      //cout << abs(dW0[i][j] - dW0num[i][j]) << " " << dW0[i][j] << " " << dW0num[i][j] << " " << i << " " << j << " 0 is err" << endl;
       e += pow(dW0[i][j] - dW0num[i][j], 2);
     }
 
   for(int i = 0; i < 4; ++i)
     for(int j = 0; j < 4; ++j){
-      //cout << abs(dW1[i][j] - dW1num[i][j]) << " " << dW1[i][j] << " " << dW1num[i][j] << " " << i << " " << j << " 1 is err" << endl;
       e += pow(dW1[i][j] - dW1num[i][j], 2);
     }
 
   for(int i = 0; i < 2; ++i)
     for(int j = 0; j < 4; ++j){
-      //cout << abs(dW2[i][j] - dW2num[i][j]) << " " << dW2[i][j] << " " << dW2num[i][j] << " " << i << " " << j << " 2 is err" << endl;
       e += pow(dW2[i][j] - dW2num[i][j], 2);
     }
 
   for(int i = 0; i < 4; ++i)
     for(int j = 0; j < 2; ++j){
-      //cout << abs(dW3[i][j] - dW3num[i][j]) << " " << dW3[i][j] << " " << dW3num[i][j] << " " << i << " " << j << " 3 is err" << endl;
       e += pow(dW3[i][j] - dW3num[i][j], 2);
     }
 
