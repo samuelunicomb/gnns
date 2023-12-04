@@ -50,9 +50,9 @@ class gcn
     void crossentropy();
 
     int tcount;
-    void experiment00();
     void experiment01();
     void experiment02();
+    void experiment03();
 
     double epsilon;
     void gradient();
@@ -69,6 +69,7 @@ class gcn
     void print_fig01(const mat2d&, const int&);
     void print_fig02a(const mat2d&);
     void print_fig02b();
+    void print_fig03a();
 
     mt19937 gen;
     uniform_real_distribution<double> unif;

@@ -84,6 +84,22 @@
 \end{frame}
 
 \begin{frame}
+  \begin{subequations}
+    \begin{align}
+      H^{(0)} &= X \\
+      M^{(0)} &= H^{(0)}\hat{A} \\
+      H^{(1)} &= \tanh \left(W^{(0)} M^{(0)}\right) \\
+      M^{(1)} &= H^{(1)}\hat{A} \\
+      H^{(2)} &= \tanh \left(W^{(1)} M^{(1)}\right) \\
+      M^{(2)} &= H^{(2)}\hat{A} \\
+      H^{(3)} &= \tanh \left(W^{(2)} M^{(2)}\right) \\
+      M^{(3)} &= H^{(3)}\hat{A} \\
+  Z = H^{(4)} &= \text{softmax}\left(W^{(4)} M^{(4)}\right)
+    \end{align}
+  \end{subequations} 
+\end{frame}
+
+\begin{frame}
   \begin{figure}
     \includegraphics[scale=0.25]{figs/fig01b.pdf}
     \caption{Unsupervised embedding of Zachary karate club.}
@@ -95,22 +111,6 @@
     \includegraphics[scale=0.25]{figs/fig01c.pdf}
     \caption{Comparing $\sigma(\tilde{H}^{(l)}) = \tanh(\tilde{H}^{(l)})$ and $\text{id}(\tilde{H}^{(l)})$.}
   \end{figure}
-\end{frame}
-
-\begin{frame}
-  \begin{subequations}
-    \begin{align}
-      H^{(0)} &= X \\
-      M^{(0)} &= H^{(0)}\hat{A} \\
-      H^{(1)} &= \tanh \left(W^{(0)} M^{(0)}\right) \\
-      M^{(1)} &= H^{(1)}\hat{A} \\
-      H^{(2)} &= \tanh \left(W^{(1)} M^{(1)}\right) \\
-      M^{(2)} &= H^{(2)}\hat{A} \\
-      H^{(3)} &= \tanh \left(W^{(2)} M^{(2)}\right) \\
-      M^{(3)} &= H^{(3)}\hat{A} \\
-      H^{(4)} &= \text{softmax}\left(W^{(4)} M^{(4)}\right)
-    \end{align}
-  \end{subequations} 
 \end{frame}
 
 \begin{frame}
@@ -141,13 +141,13 @@ where
 \end{frame}
 
 \begin{frame}
-  Change in $\mathcal{L}$ due to change in $w_{ji}$ is
+  Change in $\mathcal{L}$ due to a change in $w_{ji}$ is
   \begin{equation}
     \begin{split}
       \dfrac{\partial \mathcal{L}}{\partial w_{ji}} &= \sum_\alpha \dfrac{\partial \mathcal{L}}{\partial h^\alpha_j}\dfrac{\partial h^\alpha_j}{\partial w_{ji}} = \sum_\alpha \delta^\alpha_j m^\alpha_i,
     \end{split}
   \end{equation}
-  where $\alpha$ runs over node indices $\lbrace 1, \hdots, |\mathcal{V}|\rbrace$. Then
+  where $\alpha$ runs over node indices $\lbrace 1, \hdots, |\mathcal{V}|\rbrace$. Then,
   \begin{equation}
     \begin{split}
       \delta^\alpha_j \equiv \dfrac{\partial \mathcal{L}}{\partial h^\alpha_j} =& \sum_k \dfrac{\partial \mathcal{L}}{\partial h^\alpha_k} \dfrac{\partial h^\alpha_k}{\partial h^\alpha_j} + \sum_{\beta} \sum_k \dfrac{\partial \mathcal{L}}{\partial h^\beta_k} \dfrac{\partial h^\beta_k}{\partial h^\alpha_j}\\
@@ -157,6 +157,13 @@ where
   where $k$ runs over all cells from $j$, and $\beta \in \text{neighbours}(\alpha)$, with
   \begin{equation}
     \dfrac{\partial h^\alpha_k}{\partial h^\alpha_j} = w_{kj}\dfrac{\sigma^\prime(h_j^\alpha)}{k_\alpha + 1} \quad \text{and} \quad \dfrac{\partial h^\beta_k}{\partial h^\alpha_j} = w_{kj}\dfrac{\sigma^\prime(h_j^\alpha)}{\sqrt{(k_\alpha + 1)(k_\beta + 1)}}.
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  Compare backpropagation $\nabla \mathcal{L}^{(\text{b})}$ to numerical differentiation $\nabla \mathcal{L}^{(\text{b})}$,
+  \begin{equation}
+    \dfrac{\partial \mathcal{L}^{(\text{d})}}{\partial w_{ji}} = \dfrac{\mathcal{L}(w_{ji} + \epsilon) - \mathcal{L}(w_{ji} - \epsilon)}{2\epsilon} + \mathcal{O}(\epsilon^2).
   \end{equation}
 \end{frame}
 

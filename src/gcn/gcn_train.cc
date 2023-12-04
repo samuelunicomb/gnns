@@ -44,3 +44,14 @@ void gcn::experiment02()
     matadd(dW3, W3);
   }
 }
+
+void gcn::experiment03()
+{
+  initialise();
+
+  forward();
+  gradient();
+  gradienteps();
+
+  print_fig03a();
+}

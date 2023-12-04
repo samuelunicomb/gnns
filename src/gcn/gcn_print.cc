@@ -67,3 +67,22 @@ void gcn::print_fig02b()
   printf("%f ", L);
   printf("\n");
 }
+
+void gcn::print_fig03a()
+{
+  for(int i = 0; i < dW0.size(); ++i)
+    for(int j = 0; j < dW0[i].size(); ++j)
+      printf("%f %f\n", dW0[i][j], dW0num[i][j]);
+
+  for(int i = 0; i < dW1.size(); ++i)
+    for(int j = 0; j < dW1[i].size(); ++j)
+      printf("%f %f\n", dW1[i][j], dW1num[i][j]);
+
+  for(int i = 0; i < dW2.size(); ++i)
+    for(int j = 0; j < dW2[i].size(); ++j)
+      printf("%f %f\n", dW2[i][j], dW2num[i][j]);
+
+  for(int i = 0; i < dW3.size(); ++i)
+    for(int j = 0; j < dW3[i].size(); ++j)
+      printf("%f %f\n", dW3[i][j], dW3num[i][j]);
+}

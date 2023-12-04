@@ -1,3 +1,5 @@
+set term qt size 1200,900 position 100,80
+
 set key top center
 
 set xrange[-0.25:0.25]
