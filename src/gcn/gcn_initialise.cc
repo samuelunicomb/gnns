@@ -24,10 +24,10 @@ void gcn::initialise()
   H3 = mat2d(2, vector<double>(N, 0)); H3t = H3; del3 = H3; M3 = H3;
   H4 = mat2d(4, vector<double>(N, 0)); H4t = H4; del4 = H4;
 
-  W0 = mat2d(4, vector<double>(N, 0)); dW0 = W0;
-  W1 = mat2d(4, vector<double>(4, 0)); dW1 = W1;
-  W2 = mat2d(2, vector<double>(4, 0)); dW2 = W2;
-  W3 = mat2d(4, vector<double>(2, 0)); dW3 = W3;
+  W0 = mat2d(4, vector<double>(N, 0)); dW0 = W0; dW0num = W0;
+  W1 = mat2d(4, vector<double>(4, 0)); dW1 = W1; dW1num = W1;
+  W2 = mat2d(2, vector<double>(4, 0)); dW2 = W2; dW2num = W2;
+  W3 = mat2d(4, vector<double>(2, 0)); dW3 = W3; dW3num = W3;
 
   I = mat2d(N, vector<double>(N, 0));
   for(int i = 0; i < N; ++i) I[i][i] = 1;
@@ -59,10 +59,10 @@ void gcn::reset()
   H3 = mat2d(2, vector<double>(N, 0)); H3t = H3; del3 = H3; M3 = H3;
   H4 = mat2d(4, vector<double>(N, 0)); H4t = H4; del4 = H4;
 
-  dW0 = mat2d(4, vector<double>(N, 0));
-  dW1 = mat2d(4, vector<double>(4, 0));
-  dW2 = mat2d(2, vector<double>(4, 0));
-  dW3 = mat2d(4, vector<double>(2, 0));
+  //dW0 = mat2d(4, vector<double>(N, 0)); dW0num = dW0;
+  //dW1 = mat2d(4, vector<double>(4, 0)); dW1num = dW1;
+  //dW2 = mat2d(2, vector<double>(4, 0)); dW2num = dW2;
+  //dW3 = mat2d(4, vector<double>(2, 0)); dW3num = dW3;
 
   H0 = I;
 }

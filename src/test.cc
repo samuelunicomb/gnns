@@ -8,7 +8,8 @@ using namespace std;
 int main ()
 {
   gcn G;
-  G.train();
+  G.experiment01();
+  //G.experiment02();
 
   //mlp M;
   //M.train();
